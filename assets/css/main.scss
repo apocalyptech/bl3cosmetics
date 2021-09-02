@@ -8,6 +8,12 @@
 // These bits are specific to the BL3 customization pages
 //
 
+.cosmetic_count {
+    font-weight: bold;
+    text-align: center;
+    color: #e0e814;
+}
+
 .customization {
     margin-bottom: 1em;
 }

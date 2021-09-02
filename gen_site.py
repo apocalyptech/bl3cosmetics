@@ -265,7 +265,7 @@ def main(base_img_href, thumb_size, urls=False, verbose=False):
                 report = collection.name_single
             else:
                 report = collection.name_plural
-            print('<strong>Total {}: {}</strong>'.format(
+            print('<div class="cosmetic_count">Total {}: {}</div>'.format(
                 report,
                 len(collection),
                 ), file=odf)
