@@ -1,0 +1,79 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+// These custom configs all come from the BLCM/modding-web-theme repo
+
+// Font sizes are too damned big on this theme.  This is a sledgehammer
+// approach, but let's see if it does the trick.
+html {
+    font-size: 12pt !important;
+}
+
+// Coloration on H* labels, for a laugh...
+h1 {
+    color: #ca90fa;
+    border-bottom: 1px solid #ca90fa;
+}
+h2 {
+    color: #bf7cf7;
+}
+h3 {
+    color: #bf7cf7;
+}
+
+// Coloration on navigation sidebars
+.nav__sub-title {
+    color: #ca90fa;
+    border-bottom: 1px solid #bf7cf7;
+}
+
+.nav__list .nav__items a:hover {
+    color: #8cd2d5;
+}
+
+.nav__list .nav__items .active {
+    color: #ca90fa;
+}
+
+// Add a more visible divider between the sidebar and main area
+.sidebar {
+    border-right: 1px solid #ca90fa;
+    padding-right: .7em;
+}
+
+// Youtube video embed sizing
+.embed-container {
+    max-width: 600px;
+}
+
+// These are called "right" sidebar but I think it actually means left?
+$right-sidebar-width-narrow: 150px;
+$right-sidebar-width: 150px;
+$right-sidebar-width-wide: 150px;
+
+// the post timestamps on the main page are a bit too big...
+.archive__item .page__date {
+    font-size: smaller;
+    font-style: italic;
+    margin-bottom: .2em;
+    margin-top: .2em;
+}
+
+// Underline the 'click for more info...' text on post summaries, as if
+// it's a link (the post *is* one big link, but this text itself is not.)
+.archive__click {
+    text-decoration: underline;
+    color: #8cd2d5;
+    margin-top: 0px;
+    font-size: smaller;
+}
+
+.archive__item-excerpt {
+    margin-bottom: 0px;
+}
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
