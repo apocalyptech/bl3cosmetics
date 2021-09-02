@@ -4,7 +4,32 @@
 
 @charset "utf-8";
 
-// These custom configs all come from the BLCM/modding-web-theme repo
+//
+// These bits are specific to the BL3 customization pages
+//
+
+.customization {
+    margin-bottom: 1em;
+}
+
+.customization .title {
+    font-size: larger;
+    font-weight: bold;
+    margin-bottom: .3em;
+}
+
+.customization .image {
+    margin-left: 2em;
+}
+
+.customization .extra {
+    margin-left: 2em;
+    font-style: italic;
+}
+
+//
+// This chunk is direct from the BLCM/modding-web-theme repo
+//
 
 // Font sizes are too damned big on this theme.  This is a sledgehammer
 // approach, but let's see if it does the trick.
@@ -74,6 +99,10 @@ $right-sidebar-width-wide: 150px;
 .archive__item-excerpt {
     margin-bottom: 0px;
 }
+
+//
+// And now here's the default content from the CSS
+//
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
