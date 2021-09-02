@@ -11,7 +11,8 @@ class Collection:
     A collection of screenshots which we'll display
     """
 
-    def __init__(self, name_plural, name_single, base_dir, contents=None):
+    def __init__(self, slug, name_plural, name_single, base_dir, contents=None):
+        self.slug = slug
         self.name_plural = name_plural
         self.name_single = name_single
         self.base_dir = base_dir
@@ -19,6 +20,12 @@ class Collection:
             self.contents = contents
         else:
             self.contents = []
+
+    def __len__(self):
+        return len(self.contents)
+
+    def get_filename(self):
+        return os.path.join('_pages', f'{self.slug}.html')
 
 class HostType(enum.Enum):
     """
@@ -111,7 +118,9 @@ class Variant(Shot):
 
 def main():
 
-    char_skin_beastmaster = Collection('Beastmaster Skins',
+    collections = []
+    collections.append(Collection('char-skins-beastmaster',
+            'Beastmaster Skins',
             'Beastmaster Skin',
             'char_skins/beastmaster',
             [
@@ -187,7 +196,26 @@ def main():
                 #Shot('Trippy Hippie', 'trippy_hippie.jpg'),
                 #Shot('Tropic Blunder', 'tropic_blunder.jpg'),
                 #Shot('Urban Blammo', 'urban_blammo.jpg'),
-                ])
+                ]))
+
+    for collection in collections:
+        filename = collection.get_filename()
+        print(f'Writing to {filename}...')
+        with open(filename, 'w') as odf:
+            print('---', file=odf)
+            print(f'permalink: /{collection.slug}/', file=odf)
+            print('---', file=odf)
+            print('', file=odf)
+            print(f'<h1>{collection.name_plural}</h1>', file=odf)
+            print('', file=odf)
+            if len(collection) == 1:
+                report = collection.name_single
+            else:
+                report = collection.name_plural
+            print('<strong>Total {}: {}</strong>'.format(
+                report,
+                len(collection),
+                ), file=odf)
 
 if __name__ == '__main__':
     main()
