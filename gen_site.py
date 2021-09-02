@@ -5,11 +5,39 @@ import os
 import re
 import sys
 import json
+import yaml
 import html
 import enum
 import lzma
 import argparse
 from PIL import Image
+
+class Category:
+    """
+    A category with multiple collections in it
+    """
+
+    def __init__(self, label, collections=None):
+        self.label = label
+        if collections:
+            self.collections = collections
+        else:
+            self.collections = []
+
+    def __len__(self):
+        """
+        Allows us to use `len(category_obj)`
+        """
+        return len(self.collections)
+
+    def __iter__(self):
+        """
+        Allows us to iterate over the object
+        """
+        return iter(self.collections)
+
+    def append(self, new_collection):
+        self.collections.append(new_collection)
 
 class Collection:
     """
@@ -148,21 +176,23 @@ class Variant(Shot):
         super().__init__(None, filename, label=label, url=url, order=order, variants=variants)
 
 
+# Our data!
+char_heads = Category('Character Heads')
+char_skins = Category('Character Skins')
+other = Category('Other')
+vehicles = Category('Vehicles')
+categories = [char_heads, char_skins, other, vehicles]
+
 # Our collections!
-bl3collections = []
-bl3collections.append(Collection('char-skins-beastmaster',
+char_skins.append(Collection('char-skins-beastmaster',
         'Beastmaster Skins',
         'Beastmaster Skin',
         'char_skins/beastmaster',
         [
-            Shot('Amp Stamp', 'amp_stamp.jpg',
-                url='https://lh3.googleusercontent.com/QajO_JbAVvBE3yw_skIwjwbl2izuiOn6qTwp05Uc26lfALyQSGXr663KHjCLdpQsqSpBxsHRMnxk_wtA4hXo-M6tGqMyLRjVzTCHGqEvnq62J8P6Vxdba7dehMRi6dOh_59S5dBus6zqBhb_5BHTRFK77YVY-VK0ocnbnPjdw6Lf76MWIN0HN16j3cci99zOywTc5RvqpqCDcU8ky7ftFKiA2R1V-jA2odY5e6zc2R-9YZiJ1Jg42LUJHk2b8Wevwb-8ld7bL5JOR8qiMPYUtwl6jW0sAIIqRch8asDMuqX9dQfquelY_B2nuYp4kHjToQleyOfY1m-CqpDzTXBQm6SWY4KCGE0IJa58gKCO8K32Gj46EHjObk95jyfFJ8o1XsLO-upoxEBz43mXeb6vKW3pmkhYmxcllt_GVjUjDD6ztOntTH1wqDqzMrmErn7O85uFAu-uVB7aGeuv3LkhpD25k5mC6tSWqmw5d7uLEyYMzRBuvcPnUW3bLELEP-BEWEwy04QZHMqf33Vr15DeeBlpCzYk0Z_VrsAlTn_Iq02oRcgW0ILJTp0gnotSLIndJmt_utTkqF6jtXnKubS6sSoANSpGjmNOO5cch8b2HEbb2cvVmwS0zWgc8xUoqDu2J0Wi-q3uE9oz8zjjtf1QHcFoLMzBdEhXavWmxm2uJFwVkdQTqv05O-YHCY0oqH1cjVYYMt3ue-acWST2sUUW4JTP'),
-            Shot('Anshin Wash Only', 'anshin_wash_only.jpg',
-                url='https://lh3.googleusercontent.com/g11wPKBugLbIpoG3chc9BkFymuvV4aFeqIAcfosq0j5AyB9K427mCnJrbMAZoGal6UlOmRmu4ISl2st_rE7jEoqqUAnCAKfHpk5yyI9PppHEin5LVnu2MxnvXwWabO1u2C2vc5pXyoc0--BOknMEgYcwPxf9pSWIwYKzUvuUGk-lV0jpl6pC5_wCK8Z89ndOW6j5kQRijXAVMCS2pEFun_BdBNs29WKkfIb_9uAWNnqq6lsyIPZ0ukMLI_d7LSENanZwI6SmccBBvD3jTDShb0_e8R0C9nIemsv0fQnxLyUmKA6zQjSvprR6rbs1QRZAzZ7apTvtSlCklPG3fjpeF9s6ndRVKQ5rCJXUxYnXXMIx18VnwlyYqQGb8r33rJDiM-9NTgPw9TfiAM50f9ijhfUNiCHkQCPqspRohTjkliRXQjMUU8ijzOxPf7iNFrtlYF_kpwaN7a-gidy4HRFjeHXiFOoolkPpal9ul9s9yI9HmdhpDFRmI29YaRP6V9vkzlc4I4JVLItuvyI7hki-3PlLuydpNE0b_O7uB4MyhH87AudXzE4hDjyy7SL6aPP5k_C4ayPQ0cUNm_-Onot48B90-sj8F5yT-_eEVqloKu-Hhz7gp0ecPViBVug2Vs1HiqJltj-RARoRpgHwCocWjoCasEipBGQrZ3MZtzIaLQiSvYHVpe9lMK8JsIN-oAgK6Pom-t6C0YL1Qn80M7xKEFuD'),
-            Shot('Atlas Classic', 'atlas_classic.jpg',
-                url='https://lh3.googleusercontent.com/On6KmWCzr_3OVFkaQJbYY3nBbQ24zFh3MGql5CqgudGgWpKsQ3kjiiU_CL_u2eKjZljcjTedIwc3kSj8qILlFiG8S48Gw_2gkM0u_5d-HNBSoDrEjao_6NoGwtcW7s4aPAM3zIHjBuLdPRbv1f5WlvZHqgfLdrHsiSygd0XzEXeR-m57h4LzfNehS7mUvQwppEY4_UvZGJxhykPzutBnbU5usMXJApSgInCRlakzQD2yD0lkrYbbBau_IghmmFpMOCY6ioS1pksCv7USCn4w7F0xuycbyIk3kDESJ2esbXEj5x-v4DE24i7WOh8w8gSNKGlgICg7st4YN-vR2iJzNxiOhoTBETJg5kONVMmC0n426RILIYCrokHkTi78R0AxZGpFkbIfP3q0FeBN1lFeHgxzrnjH9YGOb3B_fUG-NqgrwQ_ZiJgwYIdmf28Qi7WQc_qhx2bbTH_UEAkq_jL71R-BdqdGEAAJGlCvwtLJvwBIA-KJaMUeo5dgYKnhk72TK8OO0XFQeORyvRYsoOYrOGgoiD3Q86oGxBgU1zqe6v-6Vp9BbyMJXKaLvkOT4NZ7x-B0Ey6HJI7UXmZWwU_9I3TcaAGUl1LsZUSBnxef-KY1u3iyJHciGWnj9uqG3uA-Ni2pxkA18DBWJ7G6kVZi7d5xbB5N9IH9rm7F4E5ti1GBGKNHHxPp3o0wYTVG6g-SWdcudaKhYFMnc1QzzIROPc88'),
-            Shot('Bad Astra', 'bad_astra.jpg',
-                url='https://lh3.googleusercontent.com/hb50kAVKvagE1l-RTHJKCeRqdjJERlxtuDT5PsD8Ij0PrBQYpXb_YzL1GzujILqwiWE6I7JDGzGeFRsIZI91xadV58oom01tiHLsJ8CqxzvSat7GLgJgyEpD0ZPhZ7DaZnNHMpJ-WUUe-LQ5WNiQ9hL7efHM95jH7f-8rDbdByLiE062hiLCEBsQJyk6WSI9ORlsW8mz01Wvrowt7rXwi85z3yaInfcJopql7C7R8mVeHd7DamIMJjDwzwO7xFJNrkAhYgc_UqJgLoUe0VAnvjecNsM5sDQG_aYr2yiB_sqEdWRsmiNX_onxPBlN1aBoYiU9_fNhLHlkICER1yOK5tz_ecU8FcdKtRKYpda84wScydxYsrLdNAddcF0bRwVrSe_kWkyMLj6eveJO7IqgLHyK8Eb7bpVRTJ5SzD2WqkxtaiUVpzYSlrVxvEdpqg3UZ4GkcUJ05mhPOOuQWPuhbyTkIcNfERkoRrDHht7luoLUusBWk_brywsxnLEYx4V0zBNevk_gCwWAOwwFvz_HCGuefr_ZOllMdAXiyTk7k6J1vUsMNGre4wF6LhgXYwpS7Ft-KpmYnMzd04wlHteCa9NPcm2br29k2qYRxpKzUYNUQdxMkpeMMJOOgVilY3Efndj2W5DnrSAnRe6pqsKpScyj1Ya-HOhL90cP5xYQH3b8xMhZelzvUd02Bj0GiiR8YGLflVIfhvT4aNFuY3Nqpflv'),
+            Shot('Amp Stamp', 'amp_stamp.jpg'),
+            Shot('Anshin Wash Only', 'anshin_wash_only.jpg'),
+            Shot('Atlas Classic', 'atlas_classic.jpg'),
+            Shot('Bad Astra', 'bad_astra.jpg'),
             Shot('Beastmaster Skin Default', 'beastmaster_skin_default.jpg', '(default skin)', order=1),
             Shot('Bubblegum Bum', 'bubblegum_bum.jpg'),
             #Shot('Burning Bright', 'burning_bright.jpg'),
@@ -250,77 +280,105 @@ def main(base_img_href, thumb_size, urls=False, verbose=False):
         with lzma.open(cache_file, 'r') as df:
             cache_data = json.load(df)
 
-    # Loop through our collections and process 'em
-    for collection in bl3collections:
-        filename = collection.get_filename()
-        print(f'Writing to {filename}...')
-        with open(filename, 'w') as odf:
-            print('---', file=odf)
-            print(f'permalink: /{collection.slug}/', file=odf)
-            print('---', file=odf)
-            print('', file=odf)
-            print(f'<h1>{collection.name_plural}</h1>', file=odf)
-            print('', file=odf)
-            if len(collection) == 1:
-                report = collection.name_single
-            else:
-                report = collection.name_plural
-            print('<div class="cosmetic_count">Total {}: {}</div>'.format(
-                report,
-                len(collection),
-                ), file=odf)
-            print('', file=odf)
+    # Loop through our categories and process 'em
+    navigation = {
+            'main': [
+                {'title': 'Home', 'url': '/'},
+                ],
+            'side': [
+                {'title': 'Main Links', 'children': [
+                    {'title': 'Home', 'url': '/'},
+                    ]},
+                ],
+            }
+    for category in categories:
 
-            # Loop over shots
-            for shot in sorted(collection):
+        # Add the category to our sidebar
+        new_cat = {'title': category.label, 'children': []}
+        navigation['side'].append(new_cat)
 
-                # Gather sizing info for the main image, and do resizes (or set up
-                # serverside resizing URLs)
-                if verbose:
-                    print(' - Processing {}'.format(shot.name))
-                image_filename = os.path.join('img', collection.base_dir, shot.filename)
-                im = Image.open(image_filename)
-                if urls and shot.url_type != HostType.NONE:
-                    href_thumb = shot.get_url(thumb_size)
-                    href_link = shot.get_url((im.width, im.height))
-                else:
-                    img_base, img_ext = shot.filename.rsplit('.', 1)
-                    base_thumb = '{}-{}-{}.{}'.format(
-                            img_base,
-                            thumb_size[0],
-                            thumb_size[1],
-                            img_ext,
-                            )
-                    dir_thumb = os.path.join('thumbs', collection.base_dir)
-                    full_thumb = os.path.join(dir_thumb, base_thumb)
-                    if not os.path.exists(full_thumb):
-                        if verbose:
-                            print('   Generating thumbnail: {}'.format(full_thumb))
-                        if not os.path.exists(dir_thumb):
-                            os.makedirs(dir_thumb, exist_ok=True)
-                        im.thumbnail(thumb_size)
-                        im.save(full_thumb)
-                    href_thumb = f'{base_img_href}/{full_thumb}'
-                    href_link = f'{base_img_href}/{image_filename}'
+        # Loop through collections and write those out
+        for collection in category:
 
-                # Now output
-                print('<div class="customization">', file=odf)
-                print('<div class="title" id="{}">{}</div>'.format(
-                    shot.anchor,
-                    html.escape(shot.name),
-                    ), file=odf)
-                print('<a href="{}" class="image"><img src="{}" width="{}" alt="{}"></a>'.format(
-                    href_link,
-                    href_thumb,
-                    thumb_size[0],
-                    html.escape(shot.name, quote=True),
-                    ), file=odf)
-                if shot.label:
-                    print('<div class="extra">{}</div>'.format(
-                        html.escape(shot.label),
-                        ), file=odf)
-                print('</div>', file=odf)
+            # ... but first add the collection to our sidebar
+            report_url = f'/{collection.slug}/'
+            new_cat['children'].append({'title': collection.name_plural, 'url': report_url})
+
+            # Now get to actually processing
+            filename = collection.get_filename()
+            print(f'Writing to {filename}...')
+            with open(filename, 'w') as odf:
+                print('---', file=odf)
+                print(f'permalink: {report_url}', file=odf)
+                print('---', file=odf)
                 print('', file=odf)
+                print(f'<h1>{collection.name_plural}</h1>', file=odf)
+                print('', file=odf)
+                if len(collection) == 1:
+                    report = collection.name_single
+                else:
+                    report = collection.name_plural
+                print('<div class="cosmetic_count">Total {}: {}</div>'.format(
+                    report,
+                    len(collection),
+                    ), file=odf)
+                print('', file=odf)
+
+                # Loop over shots
+                for shot in sorted(collection):
+
+                    # Gather sizing info for the main image, and do resizes (or set up
+                    # serverside resizing URLs)
+                    if verbose:
+                        print(' - Processing {}'.format(shot.name))
+                    image_filename = os.path.join('img', collection.base_dir, shot.filename)
+                    im = Image.open(image_filename)
+                    if urls and shot.url_type != HostType.NONE:
+                        href_thumb = shot.get_url(thumb_size)
+                        href_link = shot.get_url((im.width, im.height))
+                    else:
+                        img_base, img_ext = shot.filename.rsplit('.', 1)
+                        base_thumb = '{}-{}-{}.{}'.format(
+                                img_base,
+                                thumb_size[0],
+                                thumb_size[1],
+                                img_ext,
+                                )
+                        dir_thumb = os.path.join('thumbs', collection.base_dir)
+                        full_thumb = os.path.join(dir_thumb, base_thumb)
+                        if not os.path.exists(full_thumb):
+                            if verbose:
+                                print('   Generating thumbnail: {}'.format(full_thumb))
+                            if not os.path.exists(dir_thumb):
+                                os.makedirs(dir_thumb, exist_ok=True)
+                            im.thumbnail(thumb_size)
+                            im.save(full_thumb)
+                        href_thumb = f'{base_img_href}/{full_thumb}'
+                        href_link = f'{base_img_href}/{image_filename}'
+
+                    # Now output
+                    print('<div class="customization">', file=odf)
+                    print('<div class="title" id="{}">{}</div>'.format(
+                        shot.anchor,
+                        html.escape(shot.name),
+                        ), file=odf)
+                    print('<a href="{}" class="image"><img src="{}" width="{}" alt="{}"></a>'.format(
+                        href_link,
+                        href_thumb,
+                        thumb_size[0],
+                        html.escape(shot.name, quote=True),
+                        ), file=odf)
+                    if shot.label:
+                        print('<div class="extra">{}</div>'.format(
+                            html.escape(shot.label),
+                            ), file=odf)
+                    print('</div>', file=odf)
+                    print('', file=odf)
+
+    # Write out navigation
+    print('Writing out navigation')
+    with open('_data/navigation.yml', 'w') as odf:
+        yaml.dump(navigation, odf, indent=2, default_flow_style=False)
 
 if __name__ == '__main__':
 

@@ -1,15 +1,18 @@
-# vim: set expandtab tabstop=2 shiftwidth=2:
-
 main:
-  - title: "Home"
-    url: "/"
+- title: Home
+  url: /
 side:
-  - title: "Main Links"
-    children:
-      - title: "Home"
-        url: "/"
-  - title: "Character Skins"
-    children:
-      - title: "Beastmaster"
-        url: "/char-skins-beastmaster/"
-
+- children:
+  - title: Home
+    url: /
+  title: Main Links
+- children: []
+  title: Character Heads
+- children:
+  - title: Beastmaster Skins
+    url: /char-skins-beastmaster/
+  title: Character Skins
+- children: []
+  title: Other
+- children: []
+  title: Vehicles
