@@ -6,7 +6,7 @@ main:
 side:
   - title: "Main Links"
     children:
-      - title: "Home / News"
+      - title: "Home"
         url: "/"
   - title: "Character Skins"
     children:
