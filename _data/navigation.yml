@@ -14,5 +14,7 @@ side:
   title: Character Skins
 - children: []
   title: Other
-- children: []
+- children:
+  - title: Technicals
+    url: /technical/
   title: Vehicles

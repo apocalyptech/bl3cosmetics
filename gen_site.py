@@ -92,8 +92,11 @@ class Shot:
         self.base_dir = ''
         self.label = label
         self.order = order
+        self.parent = None
         if variants:
             self.variants = variants
+            for variant in variants:
+                variant.parent = self
         else:
             self.variants = []
 
@@ -166,6 +169,70 @@ class Shot:
                     )
         else:
             return self.url_base
+
+    def output(self, odf, collection, base_img_href, thumb_size, urls=False, verbose=False):
+
+        # Gather sizing info for the main image, and do resizes (or set up
+        # serverside resizing URLs)
+        if verbose:
+            if self.name:
+                print(' - Processing {}'.format(self.name))
+            else:
+                print('   Processing Variant')
+        image_filename = os.path.join('img', collection.base_dir, self.filename)
+        im = Image.open(image_filename)
+        if urls and self.url_type != HostType.NONE:
+            href_thumb = self.get_url(thumb_size)
+            href_link = self.get_url((im.width, im.height))
+        else:
+            img_base, img_ext = self.filename.rsplit('.', 1)
+            base_thumb = '{}-{}-{}.{}'.format(
+                    img_base,
+                    thumb_size[0],
+                    thumb_size[1],
+                    img_ext,
+                    )
+            dir_thumb = os.path.join('thumbs', collection.base_dir)
+            full_thumb = os.path.join(dir_thumb, base_thumb)
+            if not os.path.exists(full_thumb):
+                if verbose:
+                    print('   Generating thumbnail: {}'.format(full_thumb))
+                if not os.path.exists(dir_thumb):
+                    os.makedirs(dir_thumb, exist_ok=True)
+                im.thumbnail(thumb_size)
+                im.save(full_thumb)
+            href_thumb = f'{base_img_href}/{full_thumb}'
+            href_link = f'{base_img_href}/{image_filename}'
+
+        # Now output
+        print('<div class="customization">', file=odf)
+        if self.name:
+            print('<div class="title" id="{}">{}</div>'.format(
+                self.anchor,
+                html.escape(self.name),
+                ), file=odf)
+        if self.name:
+            alt_text = self.name
+        elif self.parent:
+            alt_text = self.parent.name
+        if self.label:
+            alt_text = '{} - {}'.format(alt_text, self.label)
+        print('<a href="{}" class="image"><img src="{}" width="{}" alt="{}"></a>'.format(
+            href_link,
+            href_thumb,
+            thumb_size[0],
+            html.escape(alt_text, quote=True),
+            ), file=odf)
+        if self.label:
+            print('<div class="extra">{}</div>'.format(
+                html.escape(self.label),
+                ), file=odf)
+        print('</div>', file=odf)
+        print('', file=odf)
+
+        # Display variants
+        for variant in self.variants:
+            variant.output(odf, collection, base_img_href, thumb_size, urls, verbose)
 
 class Variant(Shot):
     """
@@ -263,6 +330,22 @@ char_skins.append(Collection('char-skins-beastmaster',
             #Shot('Urban Blammo', 'urban_blammo.jpg'),
             ]))
 
+vehicles.append(Collection('technical',
+        'Technicals',
+        'Technical',
+        'vehicle_skins/technical',
+        [
+            Shot('Atlas', 'atlas_2_heavy.jpg', 'heavy armor', variants=[
+                Variant('atlas_1_regular.jpg', 'light armor'),
+                ]),
+            Shot('Blue Angels', 'blue_angels_2_heavy.jpg', 'heavy armor', variants=[
+                Variant('blue_angels_1_regular.jpg', 'light armor'),
+                ]),
+            Shot('Bubblegum', 'bubblegum_2_heavy.jpg', 'heavy armor', variants=[
+                Variant('bubblegum_1_regular.jpg', 'light armor'),
+                ]),
+            ]))
+
 def main(base_img_href, thumb_size, urls=False, verbose=False):
     """
     Do the generation.
@@ -326,54 +409,7 @@ def main(base_img_href, thumb_size, urls=False, verbose=False):
 
                 # Loop over shots
                 for shot in sorted(collection):
-
-                    # Gather sizing info for the main image, and do resizes (or set up
-                    # serverside resizing URLs)
-                    if verbose:
-                        print(' - Processing {}'.format(shot.name))
-                    image_filename = os.path.join('img', collection.base_dir, shot.filename)
-                    im = Image.open(image_filename)
-                    if urls and shot.url_type != HostType.NONE:
-                        href_thumb = shot.get_url(thumb_size)
-                        href_link = shot.get_url((im.width, im.height))
-                    else:
-                        img_base, img_ext = shot.filename.rsplit('.', 1)
-                        base_thumb = '{}-{}-{}.{}'.format(
-                                img_base,
-                                thumb_size[0],
-                                thumb_size[1],
-                                img_ext,
-                                )
-                        dir_thumb = os.path.join('thumbs', collection.base_dir)
-                        full_thumb = os.path.join(dir_thumb, base_thumb)
-                        if not os.path.exists(full_thumb):
-                            if verbose:
-                                print('   Generating thumbnail: {}'.format(full_thumb))
-                            if not os.path.exists(dir_thumb):
-                                os.makedirs(dir_thumb, exist_ok=True)
-                            im.thumbnail(thumb_size)
-                            im.save(full_thumb)
-                        href_thumb = f'{base_img_href}/{full_thumb}'
-                        href_link = f'{base_img_href}/{image_filename}'
-
-                    # Now output
-                    print('<div class="customization">', file=odf)
-                    print('<div class="title" id="{}">{}</div>'.format(
-                        shot.anchor,
-                        html.escape(shot.name),
-                        ), file=odf)
-                    print('<a href="{}" class="image"><img src="{}" width="{}" alt="{}"></a>'.format(
-                        href_link,
-                        href_thumb,
-                        thumb_size[0],
-                        html.escape(shot.name, quote=True),
-                        ), file=odf)
-                    if shot.label:
-                        print('<div class="extra">{}</div>'.format(
-                            html.escape(shot.label),
-                            ), file=odf)
-                    print('</div>', file=odf)
-                    print('', file=odf)
+                    shot.output(odf, collection, base_img_href, thumb_size, urls, verbose)
 
     # Write out navigation
     print('Writing out navigation')
