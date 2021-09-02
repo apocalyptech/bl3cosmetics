@@ -233,7 +233,7 @@ bl3collections.append(Collection('char-skins-beastmaster',
             #Shot('Urban Blammo', 'urban_blammo.jpg'),
             ]))
 
-def main(thumb_size, urls=False, verbose=False):
+def main(base_img_href, thumb_size, urls=False, verbose=False):
     """
     Do the generation.
 
@@ -300,8 +300,8 @@ def main(thumb_size, urls=False, verbose=False):
                             os.makedirs(dir_thumb, exist_ok=True)
                         im.thumbnail(thumb_size)
                         im.save(full_thumb)
-                    href_thumb = full_thumb
-                    href_link = image_filename
+                    href_thumb = f'{base_img_href}/{full_thumb}'
+                    href_link = f'{base_img_href}/{image_filename}'
 
                 # Now output
                 print('<div class="customization">', file=odf)
@@ -328,6 +328,11 @@ if __name__ == '__main__':
             description='Generate BL3 Cosmetics Archive',
             )
 
+    parser.add_argument('-b', '--base-img-href',
+            default='/bl3cosmetics',
+            help='Base image HREF for locally-sourced images',
+            )
+
     parser.add_argument('-w', '--width',
             type=int,
             default=800,
@@ -352,5 +357,5 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    main((args.width, args.height), args.urls, args.verbose)
+    main(args.base_img_href, (args.width, args.height), args.urls, args.verbose)
 
