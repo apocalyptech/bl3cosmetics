@@ -1,0 +1,28 @@
+# vim: set expandtab tabstop=2 shiftwidth=2:
+
+title: Borderlands 3 Cosmetics
+remote_theme: apocalyptech/bl3cosmetics-theme
+minimal_mistakes_skin: dark
+include: ["_pages"]
+markdown: kramdown
+
+# Apparently for our theme, these plugins may be needed
+plugins:
+  - jekyll-include-cache
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+
+# Defaults for various page types
+defaults:
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
+      sidebar:
+        nav: "side"
+
