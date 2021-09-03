@@ -1152,7 +1152,7 @@ vehicles.append(Collection('outrunner',
                 Variant('dahl_2_heavy.jpg', 'heavy armor'),
                 ]),
             Shot("Default", 'default_1_regular.jpg', 'light armor (default skin)', order=1, variants=[
-                Variant('default_2_heavy.jpg', 'heavy armor'),
+                Variant('default_2_heavy.jpg', 'heavy armor (default skin)'),
                 ]),
             Shot("Ellie", 'ellie_1_regular.jpg', 'light armor', variants=[
                 Variant('ellie_2_heavy.jpg', 'heavy armor'),
@@ -1208,8 +1208,8 @@ vehicles.append(Collection('outrunner',
             Shot("Rage Cage", 'rage_cage_1_regular.jpg', 'light armor', variants=[
                 Variant('rage_cage_2_heavy.jpg', 'heavy armor'),
                 ]),
-            Shot("Red Machine", 'red_machine_1_regular.jpg', 'light armor', variants=[
-                Variant('red_machine_2_heavy.jpg', 'heavy armor'),
+            Shot("Red Machine", 'red_machine_1_regular.jpg', 'light armor - BUGGED, can only spawn at exactly level 9', variants=[
+                Variant('red_machine_2_heavy.jpg', 'heavy armor - BUGGED, can only spawn at exactly level 9'),
                 ]),
             Shot("Shirking Convention", 'shirking_convention_1_regular.jpg', 'light armor', variants=[
                 Variant('shirking_convention_2_heavy.jpg', 'heavy armor'),
@@ -1263,7 +1263,7 @@ vehicles.append(Collection('cyclone',
                 Variant('dark_2_regular_hover.jpg', 'light armor, hover wheel'),
                 ]),
             Shot("Default", 'default_1_heavy_blade.jpg', 'heavy armor, blade wheel (default skin)', order=1, variants=[
-                Variant('default_2_regular_hover.jpg', 'light armor, hover wheel'),
+                Variant('default_2_regular_hover.jpg', 'light armor, hover wheel (default skin)'),
                 ]),
             Shot("Ellie", 'ellie_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
                 Variant('ellie_2_regular_hover.jpg', 'light armor, hover wheel'),
@@ -1346,7 +1346,7 @@ vehicles.append(Collection('technical',
                 Variant('dahl_2_heavy.jpg', 'heavy armor'),
                 ]),
             Shot("Default", 'default_1_regular.jpg', 'light armor (default skin)', order=1, variants=[
-                Variant('default_2_heavy.jpg', 'heavy armor'),
+                Variant('default_2_heavy.jpg', 'heavy armor (default skin)'),
                 ]),
             Shot("E3 2019", 'e3_2019_1_regular.jpg', 'light armor', variants=[
                 Variant('e3_2019_2_heavy.jpg', 'heavy armor'),
