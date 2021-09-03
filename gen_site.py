@@ -1469,7 +1469,8 @@ def main(base_img_href, thumb_size, urls=False, verbose=False):
     # Loop through our categories and process 'em
     navigation = {
             'main': [
-                {'title': 'Home', 'url': '/'},
+                # Actually, I don't think I want that link up there...
+                #{'title': 'Home', 'url': '/'},
                 ],
             'side': [
                 {'title': 'Main Links', 'children': [
