@@ -33,6 +33,11 @@
     font-style: italic;
 }
 
+.grid-area {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .grid-area:after {
     content: '';
     display: block;
@@ -41,7 +46,7 @@
 
 .grid-customization {
     width: 14em;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     float: left;
     text-align: center;
     padding-right: 1em;
