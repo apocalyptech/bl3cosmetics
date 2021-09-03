@@ -1,14 +1,13 @@
 # vim: set expandtab tabstop=2 shiftwidth=2:
 
-title: Borderlands 3 Cosmetics
+title: Borderlands 3 Cosmetics Galleries
 url: https://apocalyptech.github.io/bl3cosmetics/
 repository: apocalyptech/bl3cosmetics
 description: >-
-  Borderlands 3 Cosmetics Info
+  Borderlands 3 Cosmetics Galleries
 remote_theme: apocalyptech/bl3cosmetics-theme
 minimal_mistakes_skin: dark
 include: ["_pages"]
-markdown: kramdown
 atom_feed:
   hide: true
 

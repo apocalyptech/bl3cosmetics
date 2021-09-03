@@ -1475,6 +1475,8 @@ def main(base_img_href, thumb_size, urls=False, verbose=False):
             'side': [
                 {'title': 'Main Links', 'children': [
                     {'title': 'Home', 'url': '/'},
+                    {'title': 'Changelog', 'url': '/changelog/'},
+                    {'title': 'Original Imgur', 'url': '/original/'},
                     ]},
                 ],
             }

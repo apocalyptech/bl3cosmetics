@@ -3,6 +3,10 @@ side:
 - children:
   - title: Home
     url: /
+  - title: Changelog
+    url: /changelog/
+  - title: Original Imgur
+    url: /original/
   title: Main Links
 - children:
   - title: Beastmaster Heads
