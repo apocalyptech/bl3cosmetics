@@ -1220,6 +1220,7 @@ def main(base_img_href, thumb_size, urls=False, verbose=False):
 
                 # Header
                 print('---', file=odf)
+                print(f'title: {collection.name_plural}', file=odf)
                 print(f'permalink: {report_url}', file=odf)
                 print('---', file=odf)
                 print('', file=odf)
