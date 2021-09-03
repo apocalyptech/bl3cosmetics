@@ -15,14 +15,6 @@ side:
     url: /char-heads-operative/
   - title: Siren Heads
     url: /char-heads-siren/
-  - title: Weapon Skins
-    url: /weapon-skins/
-  - title: ECHO Themes
-    url: /echo-themes/
-  - title: Trinkets
-    url: /trinkets/
-  - title: Room Decorations
-    url: /room-decorations/
   title: Character Heads
 - children:
   - title: Beastmaster Skins
@@ -34,7 +26,15 @@ side:
   - title: Siren Skins
     url: /char-skins-siren/
   title: Character Skins
-- children: []
+- children:
+  - title: ECHO Themes
+    url: /echo-themes/
+  - title: Room Decorations
+    url: /room-decorations/
+  - title: Trinkets
+    url: /trinkets/
+  - title: Weapon Skins
+    url: /weapon-skins/
   title: Other
 - children:
   - title: Outrunner Skins

@@ -392,31 +392,31 @@ char_skins.append(Collection('char-skins-siren',
 ### Other
 ###
 
-char_heads.append(Collection('weapon-skins',
-        'Weapon Skins',
-        'Weapon Skin',
-        'other/weapon_skins',
-        [
-            ]))
-
-char_heads.append(Collection('echo-themes',
+other.append(Collection('echo-themes',
         'ECHO Themes',
         'ECHO Theme',
         'other/echo_themes',
         [
             ]))
 
-char_heads.append(Collection('trinkets',
+other.append(Collection('room-decorations',
+        'Room Decorations',
+        'Room Decoration',
+        'other/room_deco',
+        [
+            ]))
+
+other.append(Collection('trinkets',
         'Trinkets',
         'Trinket',
         'other/trinkets',
         [
             ]))
 
-char_heads.append(Collection('room-decorations',
-        'Room Decorations',
-        'Room Decoration',
-        'other/room_deco',
+other.append(Collection('weapon-skins',
+        'Weapon Skins',
+        'Weapon Skin',
+        'other/weapon_skins',
         [
             ]))
 
