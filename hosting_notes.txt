@@ -1,0 +1,125 @@
+These images were originally just hosted directly off of Imgur, but keeping
+those up to date proved to be rather annoying.  In the end, none of the
+other free image-gallery hosting sites really had a frontend which I liked,
+though, which is how I ended up with this repo here.
+
+Right now the repo just uses "local" github files to serve its images,
+which I think should be okay given the traffic it looked like these
+things were seeing.  In the event that it's more popular than I imagine it
+to be, though, it's possible that we'll run afoul of Github's transfer
+limits for Pages-hosted sites.
+
+If that does happen, I do already have a system in place for it, and I may
+even start pre-filling that out.  Basically each `Shot` object can be given
+a URL to an image, and if `gen_site.py` is run with the `-u`/`--urls`
+option, it'll make use of those URLs instead of the local files.  So,
+upload the images elsewhere, create the mappings, regen the site, and Bjorn
+Stroningthearm's your uncle.
+
+My personal preference for what image-hosting site to use is, at time of
+writing (early September, 2021), Dropbox, but there's a variety of sites
+that would do.  Imgur itself doesn't work *terribly*, but if you try to
+link directly to an image, you'll get directed into Imgur's framework at
+least once, though subsequent loads of the same HREF will probably get you
+to the image after that.
+
+My preferred runner-up would be Google Photos, though I'm not keen to add
+any more Google dependencies to anything of mine.  I suppose the full
+preferred order would currently be something like:
+
+1. Github (current)
+2. Dropbox
+3. Google Photos
+4. imgbb
+
+And then to the ones I'd actually *not* recommend at all, for various
+reasons:
+
+5. Flickr - backend is super annoying to work with
+6. Wix - Their business model is very orthogonal to what I'd intend to
+   do with it; I'd be reasonably worried that the account would get
+   cancelled at some point
+7. imgur - Can't directly link to the images without getting framework
+   redirects
+8. imgbox - Slow as hell
+
+And, in conclusion, the pros/cons that I'd been jotting down while trying
+all these:
+
+0) Github
+   Pros:
+     * Generation code and images could live side-by-side
+     * Fast
+     * Easy cloning for anyone else wanting to take a backup of it
+   Cons:
+     * 100GB/month transfer limit.  Would definitely want to generate
+       thumbnails for inlining
+
+1) imgur
+   Pros:
+     * On-site gallery view is basically exactly what I want
+     * Fast
+     * Can seemingly be straight <img>-embedded without much trouble
+   Cons:
+     * Annoying as hell to work with
+     * Reordering is painful
+     * Can't be "properly" linked-to: HREF will load an imgur page
+       and the user would have to click a second time to get fullscreen.
+
+2) Google Photos
+   Pros:
+     * Can be embedded and directly <img>-embedded without much trouble
+     * Image URLs can be customized to do serverside resizing
+     * Backend management of files is nice and easy (folder-based)
+   Cons:
+     * Is Google
+     * Images noticeably slow to load
+     * On-site gallery view is lame
+
+3) imgbb
+   Pros:
+     * Can be embedded and directly <img>-embedded without much trouble
+     * Fast
+   Cons:
+     * On-site gallery view isn't really what I want, though it's not
+       awful.
+
+4) Wix
+   Pros:
+     * Can be embedded and directly <img>-embedded without much trouble
+     * Fast
+     * Backend management of files is nice and easy (folder-based)
+   Cons:
+     * No real builtin backend gallery stuff; it's more a generic website
+       builder place.
+     * Would be vaguely concerned that it'd get deleted due to inactivity,
+       or taken down on account of being screenshots or something...
+     * Terms + Conditions have stuff in there that'd be terrifying if I
+       were an actual creator.
+ 
+5) Flickr
+   Pros:
+     * Can be embedded and directly <img>-embedded without much trouble
+     * Fast
+   Cons:
+     * On-site gallery view isn't really what I want
+     * Management of galleries is pretty cumbersome and annoying
+     * Finding static image URLs for embedding is annoying; have to go out
+       to media info in the browser, to get it.
+
+6) Imgbox
+   Pros:
+     * Can be embedded and directly <img>-embedded without much trouble
+   Cons:
+     * Backend is pretty lame
+     * SLOW.  Worst of the bunch so far
+     * On-site gallery isn't workable at all
+
+7) Dropbox
+   Pros:
+     * Can be embedded and directly <img>-embedded without much trouble
+     * Fast
+     * Backend management is trivial
+   Cons:
+     * No on-site gallery functionality at all
+
