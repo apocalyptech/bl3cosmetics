@@ -6,4 +6,8 @@ Some utilities to deal with new Trinket screenshots:
    screenshots into combined gallery-style photos, from back when I was
    hosting these from imgur.  This one's not really used anymore, but
    I was keeping it here for reference.
+3. The `edited` dir contains my image processing for the Pain Freeze
+   trinket, whose thumbnail image has never worked right.  Just took
+   a screenshot of the trinket in-game and worked up a thumbnail-like
+   image in [gimp](https://www.gimp.org/).
 
