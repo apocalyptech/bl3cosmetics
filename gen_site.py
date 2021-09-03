@@ -250,7 +250,44 @@ other = Category('Other')
 vehicles = Category('Vehicles')
 categories = [char_heads, char_skins, other, vehicles]
 
-# Our collections!
+
+###
+### Our collections!  First up:
+### Heads
+###
+
+char_heads.append(Collection('char-heads-beastmaster',
+        'Beastmaster Heads',
+        'Beastmaster Head',
+        'char_heads/beastmaster',
+        [
+            ]))
+
+char_heads.append(Collection('char-heads-gunner',
+        'Gunner Heads',
+        'Gunner Head',
+        'char_heads/gunner',
+        [
+            ]))
+
+char_heads.append(Collection('char-heads-operative',
+        'Operative Heads',
+        'Operative Head',
+        'char_heads/operative',
+        [
+            ]))
+
+char_heads.append(Collection('char-heads-siren',
+        'Siren Heads',
+        'Siren Head',
+        'char_heads/siren',
+        [
+            ]))
+
+###
+### Skins
+###
+
 char_skins.append(Collection('char-skins-beastmaster',
         'Beastmaster Skins',
         'Beastmaster Skin',
@@ -330,9 +367,80 @@ char_skins.append(Collection('char-skins-beastmaster',
             #Shot('Urban Blammo', 'urban_blammo.jpg'),
             ]))
 
+char_skins.append(Collection('char-skins-gunner',
+        'Gunner Skins',
+        'Gunner Skin',
+        'char_skins/gunner',
+        [
+            ]))
+
+char_skins.append(Collection('char-skins-operative',
+        'Operative Skins',
+        'Operative Skin',
+        'char_skins/operative',
+        [
+            ]))
+
+char_skins.append(Collection('char-skins-siren',
+        'Siren Skins',
+        'Siren Skin',
+        'char_skins/siren',
+        [
+            ]))
+
+###
+### Other
+###
+
+char_heads.append(Collection('weapon-skins',
+        'Weapon Skins',
+        'Weapon Skin',
+        'other/weapon_skins',
+        [
+            ]))
+
+char_heads.append(Collection('echo-themes',
+        'ECHO Themes',
+        'ECHO Theme',
+        'other/echo_themes',
+        [
+            ]))
+
+char_heads.append(Collection('trinkets',
+        'Trinkets',
+        'Trinket',
+        'other/trinkets',
+        [
+            ]))
+
+char_heads.append(Collection('room-decorations',
+        'Room Decorations',
+        'Room Decoration',
+        'other/room_deco',
+        [
+            ]))
+
+###
+### Vehicles
+###
+
+vehicles.append(Collection('outrunner',
+        'Outrunner Skins',
+        'Outrunner Skin',
+        'vehicle_skins/outrunner',
+        [
+            ]))
+
+vehicles.append(Collection('cyclone',
+        'Cyclone Skins',
+        'Cyclone Skin',
+        'vehicle_skins/cyclone',
+        [
+            ]))
+
 vehicles.append(Collection('technical',
-        'Technicals',
-        'Technical',
+        'Technical Skins',
+        'Technical Skin',
         'vehicle_skins/technical',
         [
             Shot('Atlas', 'atlas_2_heavy.jpg', 'heavy armor', variants=[
@@ -345,6 +453,17 @@ vehicles.append(Collection('technical',
                 Variant('bubblegum_1_regular.jpg', 'light armor'),
                 ]),
             ]))
+
+vehicles.append(Collection('jetbeast',
+        'Jetbeast Skins',
+        'Jetbeast Skin',
+        'vehicle_skins/jetbeast',
+        [
+            ]))
+
+###
+### Main rendering functions + such follow
+###
 
 def main(base_img_href, thumb_size, urls=False, verbose=False):
     """

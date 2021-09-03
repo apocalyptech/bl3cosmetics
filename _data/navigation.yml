@@ -6,15 +6,43 @@ side:
   - title: Home
     url: /
   title: Main Links
-- children: []
+- children:
+  - title: Beastmaster Heads
+    url: /char-heads-beastmaster/
+  - title: Gunner Heads
+    url: /char-heads-gunner/
+  - title: Operative Heads
+    url: /char-heads-operative/
+  - title: Siren Heads
+    url: /char-heads-siren/
+  - title: Weapon Skins
+    url: /weapon-skins/
+  - title: ECHO Themes
+    url: /echo-themes/
+  - title: Trinkets
+    url: /trinkets/
+  - title: Room Decorations
+    url: /room-decorations/
   title: Character Heads
 - children:
   - title: Beastmaster Skins
     url: /char-skins-beastmaster/
+  - title: Gunner Skins
+    url: /char-skins-gunner/
+  - title: Operative Skins
+    url: /char-skins-operative/
+  - title: Siren Skins
+    url: /char-skins-siren/
   title: Character Skins
 - children: []
   title: Other
 - children:
-  - title: Technicals
+  - title: Outrunner Skins
+    url: /outrunner/
+  - title: Cyclone Skins
+    url: /cyclone/
+  - title: Technical Skins
     url: /technical/
+  - title: Jetbeast Skins
+    url: /jetbeast/
   title: Vehicles
