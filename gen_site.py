@@ -1133,6 +1133,108 @@ vehicles.append(Collection('outrunner',
         'vehicle_skins/outrunner',
         'Mar 26, 2020',
         [
+            Shot("Angel", 'angel_1_regular.jpg', 'light armor', variants=[
+                Variant('angel_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Atlas", 'atlas_1_regular.jpg', 'light armor', variants=[
+                Variant('atlas_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Bubblegum", 'bubblegum_1_regular.jpg', 'light armor', variants=[
+                Variant('bubblegum_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Bug Racer", 'bug_racer_1_regular.jpg', 'light armor', variants=[
+                Variant('bug_racer_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Children of the Vault", 'children_of_the_vault_1_regular.jpg', 'light armor', variants=[
+                Variant('children_of_the_vault_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Dahl", 'dahl_1_regular.jpg', 'light armor', variants=[
+                Variant('dahl_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Default", 'default_1_regular.jpg', 'light armor (default skin)', order=1, variants=[
+                Variant('default_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Ellie", 'ellie_1_regular.jpg', 'light armor', variants=[
+                Variant('ellie_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Festive", 'festive_1_regular.jpg', 'light armor', variants=[
+                Variant('festive_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Flames", 'flames_1_regular.jpg', 'light armor', variants=[
+                Variant('flames_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Forest", 'forest_1_regular.jpg', 'light armor', variants=[
+                Variant('forest_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Gearbox", 'gearbox_1_regular.jpg', 'light armor', variants=[
+                Variant('gearbox_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Golden Hog", 'golden_hog_1_regular.jpg', 'light armor', variants=[
+                Variant('golden_hog_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Grog Lube", 'grog_lube_1_regular.jpg', 'light armor', variants=[
+                Variant('grog_lube_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Hexagons", 'hexagons_1_regular.jpg', 'light armor', variants=[
+                Variant('hexagons_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Historic Racing", 'historic_racing_1_regular.jpg', 'light armor', variants=[
+                Variant('historic_racing_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Houndstooth", 'houndstooth_1_regular.jpg', 'light armor', variants=[
+                Variant('houndstooth_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Hyperion", 'hyperion_1_regular.jpg', 'light armor', variants=[
+                Variant('hyperion_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Infection", 'infection_1_regular.jpg', 'light armor', variants=[
+                Variant('infection_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Jakobs", 'jakobs_1_regular.jpg', 'light armor', variants=[
+                Variant('jakobs_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Maliwan", 'maliwan_1_regular.jpg', 'light armor', variants=[
+                Variant('maliwan_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Pirate", 'pirate_1_regular.jpg', 'light armor', variants=[
+                Variant('pirate_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Prisa's Garage", 'prisas_garage_1_regular.jpg', 'light armor', variants=[
+                Variant('prisas_garage_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Psycho-mobile", 'psycho-mobile_1_regular.jpg', 'light armor', variants=[
+                Variant('psycho-mobile_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Rage Cage", 'rage_cage_1_regular.jpg', 'light armor', variants=[
+                Variant('rage_cage_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Red Machine", 'red_machine_1_regular.jpg', 'light armor', variants=[
+                Variant('red_machine_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Shirking Convention", 'shirking_convention_1_regular.jpg', 'light armor', variants=[
+                Variant('shirking_convention_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Slow and Mad", 'slow_and_mad_1_regular.jpg', 'light armor', variants=[
+                Variant('slow_and_mad_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Spicy Tuna Roll", 'spicy_tuna_roll_1_regular.jpg', 'light armor', variants=[
+                Variant('spicy_tuna_roll_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Stealth", 'stealth_1_regular.jpg', 'light armor', variants=[
+                Variant('stealth_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Tentacar", 'tentacar_1_regular.jpg', 'light armor', variants=[
+                Variant('tentacar_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Torgue", 'torgue_1_regular.jpg', 'light armor', variants=[
+                Variant('torgue_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Triangles", 'triangles_1_regular.jpg', 'light armor', variants=[
+                Variant('triangles_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Vladof", 'vladof_1_regular.jpg', 'light armor', variants=[
+                Variant('vladof_2_heavy.jpg', 'heavy armor'),
+                ]),
             ]))
 
 vehicles.append(Collection('cyclone',
@@ -1141,6 +1243,85 @@ vehicles.append(Collection('cyclone',
         'vehicle_skins/cyclone',
         'Mar 26, 2020',
         [
+
+            Shot("Atlas", 'atlas_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('atlas_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Bubblegum", 'bubblegum_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('bubblegum_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Children of the Vault", 'children_of_the_vault_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('children_of_the_vault_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Chopper", 'chopper_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('chopper_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Dahl", 'dahl_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('dahl_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Dark", 'dark_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('dark_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Default", 'default_1_heavy_blade.jpg', 'heavy armor, blade wheel (default skin)', order=1, variants=[
+                Variant('default_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Ellie", 'ellie_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('ellie_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Emergency", 'emergency_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('emergency_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Firehawk", 'firehawk_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('firehawk_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Forest", 'forest_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('forest_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Gamescom 2019", 'gamescom_2019_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('gamescom_2019_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Gearbox", 'gearbox_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('gearbox_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Golden Wheel", 'golden_wheel_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('golden_wheel_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Hyperion", 'hyperion_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('hyperion_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Jakobs", 'jakobs_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('jakobs_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Lifeline", 'lifeline_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('lifeline_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Lollipop", 'lollipop_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('lollipop_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Maliwan", 'maliwan_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('maliwan_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Ninja Shark", 'ninja_shark_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('ninja_shark_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Police", 'police_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('police_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Psycho", 'psycho_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('psycho_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Spicy Tuna Roll", 'spicy_tuna_roll_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('spicy_tuna_roll_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Stealth", 'stealth_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('stealth_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Torgue", 'torgue_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('torgue_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
+            Shot("Vladof", 'vladof_1_heavy_blade.jpg', 'heavy armor, blade wheel', variants=[
+                Variant('vladof_2_regular_hover.jpg', 'light armor, hover wheel'),
+                ]),
             ]))
 
 vehicles.append(Collection('technical',
@@ -1149,14 +1330,104 @@ vehicles.append(Collection('technical',
         'vehicle_skins/technical',
         'Mar 26, 2020',
         [
-            Shot('Atlas', 'atlas_2_heavy.jpg', 'heavy armor', variants=[
-                Variant('atlas_1_regular.jpg', 'light armor'),
+            Shot("Atlas", 'atlas_1_regular.jpg', 'light armor', variants=[
+                Variant('atlas_2_heavy.jpg', 'heavy armor'),
                 ]),
-            Shot('Blue Angels', 'blue_angels_2_heavy.jpg', 'heavy armor', variants=[
-                Variant('blue_angels_1_regular.jpg', 'light armor'),
+            Shot("Blue Angels", 'blue_angels_1_regular.jpg', 'light armor', variants=[
+                Variant('blue_angels_2_heavy.jpg', 'heavy armor'),
                 ]),
-            Shot('Bubblegum', 'bubblegum_2_heavy.jpg', 'heavy armor', variants=[
-                Variant('bubblegum_1_regular.jpg', 'light armor'),
+            Shot("Bubblegum", 'bubblegum_1_regular.jpg', 'light armor', variants=[
+                Variant('bubblegum_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Children of the Vault", 'children_of_the_vault_1_regular.jpg', 'light armor', variants=[
+                Variant('children_of_the_vault_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Dahl", 'dahl_1_regular.jpg', 'light armor', variants=[
+                Variant('dahl_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Default", 'default_1_regular.jpg', 'light armor (default skin)', order=1, variants=[
+                Variant('default_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("E3 2019", 'e3_2019_1_regular.jpg', 'light armor', variants=[
+                Variant('e3_2019_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Ellie", 'ellie_1_regular.jpg', 'light armor', variants=[
+                Variant('ellie_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Festi-Flesh", 'festi-flesh_1_regular.jpg', 'light armor', variants=[
+                Variant('festi-flesh_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Follow-Me", 'follow-me_1_regular.jpg', 'light armor', variants=[
+                Variant('follow-me_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Forest Camo", 'forest_camo_1_regular.jpg', 'light armor', variants=[
+                Variant('forest_camo_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Frost Rider", 'frost_rider_1_regular.jpg', 'light armor', variants=[
+                Variant('frost_rider_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Gearbox", 'gearbox_1_regular.jpg', 'light armor', variants=[
+                Variant('gearbox_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Golden Ticket", 'golden_ticket_1_regular.jpg', 'light armor', variants=[
+                Variant('golden_ticket_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Halftone", 'halftone_1_regular.jpg', 'light armor', variants=[
+                Variant('halftone_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Hyperion", 'hyperion_1_regular.jpg', 'light armor', variants=[
+                Variant('hyperion_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("I like dinosaurs.", 'i_like_dinosaurs_1_regular.jpg', 'light armor', variants=[
+                Variant('i_like_dinosaurs_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Jakobs", 'jakobs_1_regular.jpg', 'light armor', variants=[
+                Variant('jakobs_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Leather", 'leather_1_regular.jpg', 'light armor', variants=[
+                Variant('leather_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Magic Number", 'magic_number_1_regular.jpg', 'light armor', variants=[
+                Variant('magic_number_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Maliwan", 'maliwan_1_regular.jpg', 'light armor', variants=[
+                Variant('maliwan_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Maya", 'maya_1_regular.jpg', 'light armor', variants=[
+                Variant('maya_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Plaid", 'plaid_1_regular.jpg', 'light armor', variants=[
+                Variant('plaid_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Roadkill", 'roadkill_1_regular.jpg', 'light armor', variants=[
+                Variant('roadkill_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Skag", 'skag_1_regular.jpg', 'light armor', variants=[
+                Variant('skag_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Spicy Tuna Roll", 'spicy_tuna_roll_1_regular.jpg', 'light armor', variants=[
+                Variant('spicy_tuna_roll_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Stealth", 'stealth_1_regular.jpg', 'light armor', variants=[
+                Variant('stealth_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Tentacar", 'tentacar_1_regular.jpg', 'light armor', variants=[
+                Variant('tentacar_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Thunderbird", 'thunderbird_1_regular.jpg', 'light armor', variants=[
+                Variant('thunderbird_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Torgue", 'torgue_1_regular.jpg', 'light armor', variants=[
+                Variant('torgue_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Vaughn's", 'vaughns_1_regular.jpg', 'light armor', variants=[
+                Variant('vaughns_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Vladof", 'vladof_1_regular.jpg', 'light armor', variants=[
+                Variant('vladof_2_heavy.jpg', 'heavy armor'),
+                ]),
+            Shot("Woodland Camo", 'woodland_camo_1_regular.jpg', 'light armor', variants=[
+                Variant('woodland_camo_2_heavy.jpg', 'heavy armor'),
                 ]),
             ]))
 
@@ -1166,6 +1437,12 @@ vehicles.append(Collection('jetbeast',
         'vehicle_skins/jetbeast',
         'Jun 30, 2020',
         [
+            Shot('Beefy', 'beefy.jpg'),
+            Shot('Company Car', 'company_car.jpg'),
+            Shot('Default', 'default.jpg', '(default skin)', order=1),
+            Shot('Devil Rider', 'devil_rider.jpg'),
+            Shot('Reptile', 'reptile.jpg'),
+            Shot('Woodsy', 'woodsy.jpg'),
             ]))
 
 ###
