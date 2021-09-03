@@ -993,7 +993,7 @@ other.append(Collection('trinkets',
         'other/trinkets',
         'Aug 6, 2021',
         grid=True,
-        extra_text="Only the trinket thumbnails are shown here",
+        extra_text="Note: Only the trinket thumbnails are shown here",
         contents=[
             Shot("Action Axton", 'action_axton.png'),
             Shot("Adapt and Overcome", 'adapt_and_overcome.png'),
