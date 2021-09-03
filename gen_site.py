@@ -44,13 +44,14 @@ class Collection:
     A collection of screenshots which we'll display
     """
 
-    def __init__(self, slug, name_plural, name_single, base_dir, last_updated, contents=None, extra_text=None):
+    def __init__(self, slug, name_plural, name_single, base_dir, last_updated, contents=None, extra_text=None, grid=False):
         self.slug = slug
         self.name_plural = name_plural
         self.name_single = name_single
         self.base_dir = base_dir
         self.last_updated = last_updated
         self.extra_text = extra_text
+        self.grid = grid
         if contents:
             self.contents = contents
         else:
@@ -182,32 +183,46 @@ class Shot:
             else:
                 print('   Processing Variant')
         image_filename = os.path.join('img', collection.base_dir, self.filename)
+        img_width = thumb_size[0]
         im = Image.open(image_filename)
         if urls and self.url_type != HostType.NONE:
-            href_thumb = self.get_url(thumb_size)
+            if im.width > thumb_size[0]:
+                href_thumb = self.get_url(thumb_size)
+            else:
+                href_thumb = self.get_url((im.width, im.height))
+                img_width = im.width
             href_link = self.get_url((im.width, im.height))
         else:
-            img_base, img_ext = self.filename.rsplit('.', 1)
-            base_thumb = '{}-{}-{}.{}'.format(
-                    img_base,
-                    thumb_size[0],
-                    thumb_size[1],
-                    img_ext,
-                    )
-            dir_thumb = os.path.join('thumbs', collection.base_dir)
-            full_thumb = os.path.join(dir_thumb, base_thumb)
-            if not os.path.exists(full_thumb):
-                if verbose:
-                    print('   Generating thumbnail: {}'.format(full_thumb))
-                if not os.path.exists(dir_thumb):
-                    os.makedirs(dir_thumb, exist_ok=True)
-                im.thumbnail(thumb_size)
-                im.save(full_thumb)
-            href_thumb = f'{base_img_href}/{full_thumb}'
+            if im.width > thumb_size[0]:
+                img_base, img_ext = self.filename.rsplit('.', 1)
+                base_thumb = '{}-{}-{}.{}'.format(
+                        img_base,
+                        thumb_size[0],
+                        thumb_size[1],
+                        img_ext,
+                        )
+                dir_thumb = os.path.join('thumbs', collection.base_dir)
+                full_thumb = os.path.join(dir_thumb, base_thumb)
+                if not os.path.exists(full_thumb):
+                    if verbose:
+                        print('   Generating thumbnail: {}'.format(full_thumb))
+                    if not os.path.exists(dir_thumb):
+                        os.makedirs(dir_thumb, exist_ok=True)
+                    im.thumbnail(thumb_size)
+                    im.save(full_thumb)
+                href_thumb = f'{base_img_href}/{full_thumb}'
+            else:
+                href_thumb = f'{base_img_href}/{image_filename}'
+                img_width = im.width
             href_link = f'{base_img_href}/{image_filename}'
 
-        # Now output
-        print('<div class="customization">', file=odf)
+        # Now output - first the header
+        if collection.grid:
+            print('<div class="grid-customization">', file=odf)
+        else:
+            print('<div class="customization">', file=odf)
+
+        # Now the data
         if self.name:
             print('<div class="title" id="{}">{}</div>'.format(
                 self.anchor,
@@ -222,13 +237,15 @@ class Shot:
         print('<a href="{}" class="image"><img src="{}" width="{}" alt="{}"></a>'.format(
             href_link,
             href_thumb,
-            thumb_size[0],
+            img_width,
             html.escape(alt_text, quote=True),
             ), file=odf)
         if self.label:
             print('<div class="extra">{}</div>'.format(
                 html.escape(self.label),
                 ), file=odf)
+
+        # ... and footer.
         print('</div>', file=odf)
         print('', file=odf)
 
@@ -975,7 +992,90 @@ other.append(Collection('trinkets',
         'Trinket',
         'other/trinkets',
         'Aug 6, 2021',
-        [
+        grid=True,
+        contents=[
+            Shot("Action Axton", 'action_axton.png'),
+            Shot("Adapt and Overcome", 'adapt_and_overcome.png'),
+            Shot("AnarChic", 'anarchic.png'),
+            Shot("Ascension", 'ascension.png'),
+            Shot("A Shrinking Feeling", 'a_shrinking_feeling.png'),
+            Shot("Battle Driver", 'battle_driver.png'),
+            Shot("Beast Bowl", 'beast_bowl.png'),
+            Shot("Book of the Storm", 'book_of_the_storm.png'),
+            Shot("Born to Kill", 'born_to_kill.png'),
+            Shot("Buckle Up", 'buckle_up.png'),
+            Shot("Caster Blaster", 'caster_blaster.png'),
+            Shot("Cloak and Swagger", 'cloak_and_swagger.png'),
+            Shot("Cosmic Romance", 'cosmic_romance.png'),
+            Shot("Dahl Tags", 'dahl_tags.png'),
+            Shot("Deadeye Decal", 'deadeye_decal.png'),
+            Shot("Dedication to Capitalism", 'dedication_to_capitalism.png'),
+            Shot("De Leon's Lash", 'de_leons_lash.png'),
+            Shot("Deploy and Destroy", 'deploy_and_destroy.png'),
+            Shot("Devil Tooth", 'devil_tooth.png'),
+            Shot("Diamond Ponytail", 'diamond_ponytail.png'),
+            Shot("Divergent Thinking", 'divergent_thinking.png'),
+            Shot("Drop It", 'drop_it.png'),
+            Shot("Dry Heat", 'dry_heat.png'),
+            Shot("Earn Your Stripes", 'earn_your_stripes.png'),
+            Shot("Ellie's Power Flower", 'ellies_power_flower.png'),
+            Shot("Explosives Enthusiast", 'explosives_enthusiast.png'),
+            Shot("For Funsies", 'for_funsies.png'),
+            Shot("Frakkin' Toaster", 'frakkin_toaster.png'),
+            Shot("Gearbox Fan", 'gearbox_fan.png'),
+            Shot("God-King's Bling", 'god-kings_bling.png'),
+            Shot("Gold Tier", 'gold_tier.png'),
+            Shot("Goodnight Kiss", 'goodnight_kiss.png'),
+            Shot("Guardian's Lament", 'guardians_lament.png'),
+            Shot("Hat Trick", 'hat_trick.png'),
+            Shot("H Marks the Spot", 'h_marks_the_spot.png'),
+            Shot("Hoops Dreams", 'hoops_dreams.png'),
+            Shot("Hunter's Patch", 'hunters_patch.png'),
+            Shot("Itsy Bitsy Rakky Hive", 'itsy_bitsy_rakky_hive.png'),
+            Shot("Jack's Off", 'jacks_off.png'),
+            Shot("Just In Case", 'just_in_case.png'),
+            Shot("Kaboom Bunny", 'kaboom_bunny.png'),
+            Shot("Keep Your Eye Out", 'keep_your_eye_out.png'),
+            Shot("King's Knight", 'kings_knight.png'),
+            Shot("Last Ride", 'last_ride.png'),
+            Shot("Li'l Chomper", 'lil_chomper.png'),
+            Shot("Mercenary Day Ornament", 'mercenary_day_ornament.png'),
+            Shot("Neon Skelly", 'neon_skelly.png'),
+            Shot("Nibblenomicon", 'nibblenomicon.png'),
+            Shot("Nothing Gold Can Stay", 'nothing_gold_can_stay.png'),
+            Shot("No, You're Crazy", 'no_youre_crazy.png'),
+            Shot("Null and V0id", 'null_and_v0id.png'),
+            Shot("One Army", 'one_army.png'),
+            Shot("One Shot", 'one_shot.png'),
+            Shot("On the Hunt", 'on_the_hunt.png'),
+            Shot("Pain Freeze", 'pain_freeze.png'),
+            Shot("Pandora Sunset", 'pandora_sunset.png'),
+            Shot("Queen of Hearts", 'queen_of_hearts.png'),
+            Shot("Relaxtrap", 'relaxtrap.png'),
+            Shot("Retro Outrunner", 'retro_outrunner.png'),
+            Shot("Rhys's Piece", 'rhys_piece.png'),
+            Shot("Shooter's Shuttle", 'shooters_shuttle.png'),
+            Shot("Shrunk 'n Dead", 'shrunk_n_dead.png'),
+            Shot("Sign of the Hawk", 'sign_of_the_hawk.png'),
+            Shot("Siren's Mark", 'sirens_mark.png'),
+            Shot("Slot Shot", 'slot_shot.png'),
+            Shot("Splorghuld, the Flesh-Slayer", 'splorghuld.png'),
+            Shot("Stink Eye", 'stink_eye.png'),
+            Shot("Super General Claptrap", 'super_general_claptrap.png'),
+            Shot("Switch Hitter", 'switch_hitter.png'),
+            Shot("Tactical Tentacle", 'tactical_tentacle.png'),
+            Shot("Tchotchkey", 'tchotchkey.png'),
+            Shot("Tentacle Ventricles", 'tentacle_ventricles.png'),
+            Shot("Tinker's Trinket", 'tinkers_trinket.png'),
+            Shot("Tiny Vault", 'tiny_vault.png'),
+            Shot("Track and Destroy", 'track_and_destroy.png'),
+            Shot("Turtle Up", 'turtle_up.png'),
+            Shot("Vapor Hoodlum", 'vapor_hoodlum.png'),
+            Shot("Vault Insider VIP", 'vault_insider_vip.png'),
+            Shot("Warm Welcome", 'warm_welcome.png'),
+            Shot("When In Doubt, Chuck It", 'when_in_doubt.png'),
+            Shot("Who Needs Gods?", 'who_needs_gods.png'),
+            Shot("Wittle Warrior", 'wittle_warrior.png'),
             ]))
 
 other.append(Collection('weapon-skins',
@@ -1143,8 +1243,13 @@ def main(base_img_href, thumb_size, urls=False, verbose=False):
                 print('', file=odf)
 
                 # Loop over shots
+                if collection.grid:
+                    print('<div class="grid-area">', file=odf)
+                    print('', file=odf)
                 for shot in sorted(collection):
                     shot.output(odf, collection, base_img_href, thumb_size, urls, verbose)
+                if collection.grid:
+                    print('</div>', file=odf)
 
     # Write out navigation
     print('Writing out navigation')

@@ -33,6 +33,30 @@
     font-style: italic;
 }
 
+.grid-area:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.grid-customization {
+    width: 20em;
+    margin-bottom: 1em;
+    float: left;
+    text-align: center;
+    padding-right: 1em;
+    padding-left: 1em;
+}
+
+.grid-customization .title {
+    font-weight: bold;
+    margin-bottom: .2em;
+}
+
+.grid-customization .extra {
+    font-style: italic;
+}
+
 //
 // Extra tweaks -- make the sidebar a bit bigger
 //
