@@ -44,11 +44,13 @@ class Collection:
     A collection of screenshots which we'll display
     """
 
-    def __init__(self, slug, name_plural, name_single, base_dir, contents=None):
+    def __init__(self, slug, name_plural, name_single, base_dir, last_updated, contents=None, extra_text=None):
         self.slug = slug
         self.name_plural = name_plural
         self.name_single = name_single
         self.base_dir = base_dir
+        self.last_updated = last_updated
+        self.extra_text = extra_text
         if contents:
             self.contents = contents
         else:
@@ -260,6 +262,7 @@ char_heads.append(Collection('char-heads-beastmaster',
         'Beastmaster Heads',
         'Beastmaster Head',
         'char_heads/beastmaster',
+        'Aug 6, 2021',
         [
             Shot("4ction Figure", '4ction_figure.jpg'),
             Shot("4NU Bust", '4nu_bust.jpg'),
@@ -311,6 +314,7 @@ char_heads.append(Collection('char-heads-gunner',
         'Gunner Heads',
         'Gunner Head',
         'char_heads/gunner',
+        'Aug 6, 2021',
         [
             Shot("Antisocial", 'antisocial.jpg'),
             Shot("Bird Collar", 'bird_collar.jpg'),
@@ -362,6 +366,7 @@ char_heads.append(Collection('char-heads-operative',
         'Operative Heads',
         'Operative Head',
         'char_heads/operative',
+        'Aug 6, 2021',
         [
             Shot("Antihero", 'antihero.jpg'),
             Shot("Antisocial", 'antisocial.jpg'),
@@ -413,6 +418,7 @@ char_heads.append(Collection('char-heads-siren',
         'Siren Heads',
         'Siren Head',
         'char_heads/siren',
+        'Aug 6, 2021',
         [
             Shot("A Few Scrapes", 'a_few_scrapes.jpg'),
             Shot("Amara", 'amara_default.jpg', '(default head)', order=1),
@@ -468,6 +474,7 @@ char_skins.append(Collection('char-skins-beastmaster',
         'Beastmaster Skins',
         'Beastmaster Skin',
         'char_skins/beastmaster',
+        'Aug 6, 2021',
         [
             Shot('Amp Stamp', 'amp_stamp.jpg'),
             Shot('Anshin Wash Only', 'anshin_wash_only.jpg'),
@@ -547,6 +554,7 @@ char_skins.append(Collection('char-skins-gunner',
         'Gunner Skins',
         'Gunner Skin',
         'char_skins/gunner',
+        'Aug 6, 2021',
         [
             Shot('Amp Stamp', 'amp_stamp.jpg'),
             Shot('Anshin Wash', 'anshin_wash.jpg'),
@@ -622,6 +630,7 @@ char_skins.append(Collection('char-skins-operative',
         'Operative Skins',
         'Operative Skin',
         'char_skins/operative',
+        'Aug 6, 2021',
         [
             Shot('Amp Stamp', 'amp_stamp.jpg'),
             Shot('Anshin Wash', 'anshin_wash.jpg'),
@@ -697,6 +706,7 @@ char_skins.append(Collection('char-skins-siren',
         'Siren Skins',
         'Siren Skin',
         'char_skins/siren',
+        'Aug 6, 2021',
         [
             Shot('Amp Stamp', 'amp_stamp.jpg'),
             Shot('Anshin Wash', 'anshin_wash.jpg'),
@@ -776,6 +786,7 @@ other.append(Collection('echo-themes',
         'ECHO Themes',
         'ECHO Theme',
         'other/echo_themes',
+        'Aug 6, 2021',
         [
             Shot("Accept the Charges", 'accept_the_charges.jpg', '(animated)'),
             Shot("Advanced Alien Technology", 'advanced_alien_technology.jpg', '(animated)'),
@@ -856,6 +867,7 @@ other.append(Collection('room-decorations',
         'Room Decorations',
         'Room Decoration',
         'other/room_decorations',
+        'Aug 6, 2021',
         [
             Shot("5KAGB8", '5kagb8.jpg'),
             Shot("5P8NKM3", '5p8nkm3.jpg'),
@@ -962,6 +974,7 @@ other.append(Collection('trinkets',
         'Trinkets',
         'Trinket',
         'other/trinkets',
+        'Aug 6, 2021',
         [
             ]))
 
@@ -969,7 +982,9 @@ other.append(Collection('weapon-skins',
         'Weapon Skins',
         'Weapon Skin',
         'other/weapon_skins',
-        [
+        'Aug 6, 2021',
+        extra_text="Skins shown on a Crader's EM-P5",
+        contents=[
             Shot("Black Dragon", 'black_dragon.jpg'),
             Shot("Blueberry Limeade", 'blueberry_limeade.jpg'),
             Shot("Burnished Steele", 'burnished_steele.jpg'),
@@ -1015,6 +1030,7 @@ vehicles.append(Collection('outrunner',
         'Outrunner Skins',
         'Outrunner Skin',
         'vehicle_skins/outrunner',
+        'Mar 26, 2020',
         [
             ]))
 
@@ -1022,6 +1038,7 @@ vehicles.append(Collection('cyclone',
         'Cyclone Skins',
         'Cyclone Skin',
         'vehicle_skins/cyclone',
+        'Mar 26, 2020',
         [
             ]))
 
@@ -1029,6 +1046,7 @@ vehicles.append(Collection('technical',
         'Technical Skins',
         'Technical Skin',
         'vehicle_skins/technical',
+        'Mar 26, 2020',
         [
             Shot('Atlas', 'atlas_2_heavy.jpg', 'heavy armor', variants=[
                 Variant('atlas_1_regular.jpg', 'light armor'),
@@ -1045,6 +1063,7 @@ vehicles.append(Collection('jetbeast',
         'Jetbeast Skins',
         'Jetbeast Skin',
         'vehicle_skins/jetbeast',
+        'Jun 30, 2020',
         [
             ]))
 
@@ -1097,12 +1116,22 @@ def main(base_img_href, thumb_size, urls=False, verbose=False):
             filename = collection.get_filename()
             print(f'Writing to {filename}...')
             with open(filename, 'w') as odf:
+
+                # Header
                 print('---', file=odf)
                 print(f'permalink: {report_url}', file=odf)
                 print('---', file=odf)
                 print('', file=odf)
                 print(f'<h1>{collection.name_plural}</h1>', file=odf)
                 print('', file=odf)
+
+                # Last updated, and (if we have it) extra text
+                print('<p class="last_updated"><strong>Last Updated:</strong> {}</p>'.format(collection.last_updated), file=odf)
+                if collection.extra_text:
+                    print('<p class="extra_text">{}</p>'.format(html.escape(collection.extra_text)), file=odf)
+                print('', file=odf)
+
+                # Report on the total count
                 if len(collection) == 1:
                     report = collection.name_single
                 else:
