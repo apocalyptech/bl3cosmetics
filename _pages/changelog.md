@@ -5,6 +5,9 @@ permalink: /changelog/
 
 # Changelog
 
+- **September 4, 2021**
+  - Some CSS tweaks to hopefully fix display on mobile
+
 - **September 3, 2021**
   - Migrated from Imgur to here
   - Added a set of heads that had been missed from the Aug 5, 2021 data:
