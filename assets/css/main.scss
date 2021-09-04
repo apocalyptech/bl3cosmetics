@@ -64,19 +64,6 @@
 }
 
 //
-// Extra tweaks -- make the sidebar a bit bigger
-//
-
-//.sidebar {
-//    width: calc(170px - 1em) !important;
-//}
-
-//.page {
-//    width: calc(100% - 170px) !important;
-//    padding-right: 170px !important;
-//}
-
-//
 // This chunk is direct from the BLCM/modding-web-theme repo
 //
 
@@ -124,9 +111,9 @@ h3 {
 }
 
 // These are called "right" sidebar but I think it actually means left?
-$right-sidebar-width-narrow: 150px;
-$right-sidebar-width: 150px;
-$right-sidebar-width-wide: 150px;
+$right-sidebar-width-narrow: 170px;
+$right-sidebar-width: 170px;
+$right-sidebar-width-wide: 170px;
 
 // the post timestamps on the main page are a bit too big...
 .archive__item .page__date {
