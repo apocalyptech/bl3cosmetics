@@ -5,6 +5,10 @@ permalink: /changelog/
 
 # Changelog
 
+- **November 18, 2021**
+  - Added Vault Card #3 cosmetics, plus the others that came along in the
+    data
+
 - **September 4, 2021**
   - Some CSS tweaks to fix display on mobile
 
