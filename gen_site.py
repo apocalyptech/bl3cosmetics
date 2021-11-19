@@ -972,7 +972,7 @@ other.append(Collection('echo-themes',
             Shot("Unknown Number", 'unknown_number.jpg', '(animated)'),
             Shot("VECH-tor Graphics", 'vechtor_graphics.jpg'),
             Shot("VIP Status", 'vip_status.jpg'),
-            Shot("Viva Pin-Loot-A", 'viva_pin-loot-a.jpg', '(animated)'),
+            Shot("Viva Pin-Loot-a", 'viva_pin-loot-a.jpg', '(animated)'),
             Shot("Worlds Best Communicator", 'worlds_best_communicator.jpg', '(animated)'),
             ]))
 
