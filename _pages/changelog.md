@@ -5,6 +5,10 @@ permalink: /changelog/
 
 # Changelog
 
+- **November 1, 2023**
+  - Added the "Villains" cosmetics added in yesterday's cosmetics-focused
+    patch
+
 - **November 18, 2021**
   - Added Vault Card #3 cosmetics, plus the others that came along in the
     data
