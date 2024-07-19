@@ -50,7 +50,7 @@ for input_file in sorted(os.listdir('.')):
             new_file = 'extracted-{:02d}-{}.png'.format(main_idx, area_idx+1)
             print(new_file)
             subprocess.run([
-                '/usr/bin/convert',
+                '/usr/bin/magick',
                 input_file,
                 '-crop', '{}x{}+{}+{}'.format(w, h, x, y),
                 new_file,
