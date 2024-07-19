@@ -1308,7 +1308,7 @@ other.append(Collection('weapon-skins',
             Shot("Arms and Armor", 'arms_and_armor.jpg'),
             Shot("Rainbows and Gun Drops", 'rainbows_and_gun_drops.jpg'),
             Shot("Rune and Gun", 'rune_and_gun.jpg'),
-            Shot("Mad Touch", 'mad_touch.jpg'),
+            Shot("Mad Touch", 'mad_touch.jpg', '(animated)'),
             ]))
 
 ###
