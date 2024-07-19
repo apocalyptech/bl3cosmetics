@@ -5,6 +5,10 @@ permalink: /changelog/
 
 # Changelog
 
+- **July 19, 2024**
+  - Added the "Heroes" cosmetics added in yesterday's cosmetics-focused
+    patch (related to the forthcoming Borderlands movie)
+
 - **November 1, 2023**
   - Added the "Villains" cosmetics added in yesterday's cosmetics-focused
     patch
